@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "coreclr_pgo_compare": {
+      "commandName": "Project"
+    }
+  }
+}
