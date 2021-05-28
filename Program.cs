@@ -46,7 +46,9 @@ namespace coreclr_pgo_compare
                 foreach (var byScenario in byPlatform.GroupBy(d => d.Scenario))
                 {
                     toc.AppendLine($"  * [{byScenario.Key}]({ToAnchor(byPlatform.Key + "-" + byScenario.Key)})");
-                    contents.AppendLine($"# {byPlatform.Key} {byScenario.Key}");
+                    contents.AppendLine($"## {byPlatform.Key} {byScenario.Key}");
+
+                    Directory.CreateDirectory(Path.Combine(resultDir, byPlatform.Key, byScenario.Key));
 
                     foreach (PlatformScenarioData graphs in byScenario)
                     {
@@ -246,7 +248,7 @@ namespace coreclr_pgo_compare
             }
 
             AppendGraph(overlaps, "Average overlap", "average_overlap.png");
-            AppendGraph(meanSquaredErrors, "Mean squared errors", "mean_squared_errors.png");
+            AppendGraph(meanSquaredErrors, "Mean squared error", "mean_squared_error.png");
             AppendGraph(matchingFgs, "# Matching FGs", "matching_fgs.png");
             AppendGraph(mismatchingFgs, "# Mismatching FGs", "mismatching_fgs.png");
             AppendGraph(lessThan50s, "# Matches with < 50% overlap", "low_overlap_matches.png");
